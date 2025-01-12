@@ -176,8 +176,8 @@ class SolidFuelFragment : Fragment() {
                 binding.boLabel.text = "O: " + " " + String.format("%.2f", (kfb * wo))
 
                 val wq = 339 * wc + 1030 * wh - 108.8 * (wo - ws) - 25 * ww
-                val dq = 100 * (wq + 0.025 * ww) / (100 - ww)
-                val bq = 100 * (wq + 0.025 * ww) / (100 - (ww + wa))
+                val dq = 100 * (wq / 1000 + 0.025 * ww) / (100 - ww) * 1000
+                val bq = 100 * (wq / 1000 + 0.025 * ww) / (100 - (ww + wa)) * 1000
 
                 binding.wqLayout.text = "Робочого: " + " " + String.format("%.2f", wq)
                 binding.dqLayout.text = "Сухого: " + " " + String.format("%.2f", dq)

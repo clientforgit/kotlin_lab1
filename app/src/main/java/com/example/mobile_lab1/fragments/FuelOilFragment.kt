@@ -10,7 +10,7 @@ import com.example.mobile_lab1.R
 import com.example.mobile_lab1.databinding.FragmentFuelOilBinding
 
 fun calculateWorkingKoeff(ww: Double, wa: Double): Double {
-    return 100 / (100 - (ww + wa))
+    return (100 - (ww + wa)) / 100
 }
 
 class FuelOilFragment : Fragment() {
@@ -129,8 +129,6 @@ class FuelOilFragment : Fragment() {
                 val wq = wqInput.text
                 if (wq.isNullOrEmpty()) {
                     binding.wqLayout.helperText = "Обов'язкове поле"
-                } else if (wq.toString().toDouble() > 100) {
-                    binding.wqLayout.helperText = "Значення від 0 до 100"
                 } else {
                     binding.wqLayout.helperText = null
                 }
@@ -169,7 +167,7 @@ class FuelOilFragment : Fragment() {
                 binding.woLabel.text = "O: " + " " + String.format("%.2f", ((100 - ww * 0.1 - wa * 0.1) * wo / 100))
                 binding.waLabel.text = "A: " + " " + String.format("%.2f", ((100 - ww) * wa / 100))
 
-                val bq = 100 * (wq + 0.025 * ww) / (100 - (ww + wa))
+                val bq = (wq * (100 - ww - wa) / 100 - 0.025 * ww) * 1000
 
                 binding.wqLabel.text = "Горючого: " + " " + String.format("%.2f", bq)
 
